@@ -29,7 +29,7 @@ void buildingURL() {
   //
   String albertaId = "id=5883102"; //City ID Numbers
   //
-  String apiKey = "APPID="; //API Key is PRIVATE so not included here
+  String apiKey = "APPID=50b343972206d4a0f476aeb4d387c7ca"; 
   String mode = "mode=json";
   String unitMetric = "units=metric";
   String and = "&";

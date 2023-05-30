@@ -2,7 +2,7 @@
 // Global Variables
 //
 void setup() {
-  
+  size(1200, 700);
   //Gemoetry
   //Population
   //DIV rect()
