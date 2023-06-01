@@ -31,7 +31,10 @@
  
  */
 
-import java.util.Date; //Date Conversation, UNIX Time Stamp from Jan 1, 1970
+import java.text.ParseException;  
+import java.text.SimpleDateFormat;  
+import java.util.Date;  //Date Conversation, UNIX Time Stamp from Jan 1, 1970
+import java.util.Locale;  
 
 //Global Variables
 String mainWeatherEdmonton, descriptionEdmonton, iconEdmonton, countryEdmonton, nameEdmonton;
@@ -47,10 +50,51 @@ String mainWeatherRedDeer, descriptionRedDeer, iconRedDeer, countryRedDeer, name
 float tempRedDeer, tempMinRedDeer, tempMaxRedDeer;
 int apiCallTimeRedDeer, sunriseRedDeer, sunsetRedDeer;
 
+void inspectVaraibles() {
+  println("Main Program, mouse pressed\t\t", apiCurrentDateCall); //To verify wrapping is current
+  //
+  println("Place called", nameEdmonton);
+  println("Conuntry Verification", countryEdmonton);
+  println("Sunrise", sunriseEdmonton);
+  println("Sunset", sunsetEdmonton);
+  println("Word Description", mainWeatherEdmonton);
+  println("Phrase Description", descriptionEdmonton);
+  println("Weather ICON", iconEdmonton);
+  println("Current Temperature", tempEdmonton);
+  println("Daily Max Temp", tempMaxEdmonton);
+  println("Daily Min Temp", tempMinEdmonton);
+}//End Inspect Variables
+
+/* Note: the actual Weather Icon Code sent depends on which lcoation button is pressed
+- example uses Edmonton
+*/
+void imageURLBuilding(String icon) {
+  String baseURL = "https://openweathermap.org";
+  String forwardSlash = "/";
+  String imgFolder = "img";
+  String weatherIconFolder = "wn";
+  String at = "@";
+  String twiceSize = "2x"; //ICONS twice size scale better than 1x
+  String fileExtension = ".png";
+  //
+  String imageURL = baseURL + forwardSlash + imgFolder + forwardSlash + weatherIconFolder + forwardSlash + icon + at + twiceSize + fileExtension;
+  //
+  println(imageURL); //Paste into Browser to Verify
+  //
+  PImage weatherImage = loadImage (imageURL);
+  image(weatherImage, currentIconX, currentIconY, currentIconRectWidth, currentIconRectHeight);
+  //CAUTION: this does not use rect() & image centering from App Engine
+  //These features must be used for full marks
+  //
+} //End image URL Building
+
 void unwrapToVariables() {
   currentEdmonton();
   currentCalgary();
   currentRedDeer();
+  //
+  //inspectVaraibles();
+  //imageURLBuilding(iconEdmonton); //testing only
 }
 
 Date humanDate(long unixTime) {
@@ -127,3 +171,4 @@ void currentRedDeer() {
 
   nameRedDeer = jsonCurrentRedDeer.getString("name");
 }
+//

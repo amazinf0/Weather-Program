@@ -1,3 +1,7 @@
+/* VOIDs
+ - Building URL
+ - API Call
+ */
 //Global Variable
 String URLCurrentAlberta;
 String URLForecastAlberta;
@@ -29,7 +33,7 @@ void buildingURL() {
   //
   String albertaId = "id=5883102"; //City ID Numbers
   //
-  String apiKey = "APPID=50b343972206d4a0f476aeb4d387c7ca"; 
+  String apiKey = "APPID=50b343972206d4a0f476aeb4d387c7ca"; //API Key is PRIVATE so not included here
   String mode = "mode=json";
   String unitMetric = "units=metric";
   String and = "&";
@@ -67,6 +71,8 @@ void buildingURL() {
 } //End buildingURL()
 
 void APICall() {
+  buildingURL();
+  //
   jsonCurrentAlberta = loadJSONObject(URLCurrentAlberta);
   jsonForecastAlberta = loadJSONObject(URLForecastAlberta);
   jsonCurrentEdmonton = loadJSONObject(URLCurrentEdmonton);
@@ -75,5 +81,16 @@ void APICall() {
   jsonForecastCalgary = loadJSONObject(URLForecastCalgary);
   jsonCurrentRedDeer = loadJSONObject(URLCurrentRedDeer);
   jsonForecastRedDeer = loadJSONObject(URLForecastRedDeer);
+  //
+  unwrapToVariables();
+  //
 } //End APICall
 //Loading JSONObjects with Website API Data
+//
+/* URLs to reference
+ - https://openweathermap.org/weather-conditions
+ - Example URL: https://openweathermap.org/img/wn/10d@2x.png
+ - List of Codes:
+ 
+ 
+ */
